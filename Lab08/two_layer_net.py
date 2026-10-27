@@ -30,7 +30,9 @@ def relu(values: torch.Tensor) -> torch.Tensor:
     # entries are unchanged.                                                   #
     ############################################################################
     # Replace "pass" statement with your code
-    pass
+
+    activated = torch.clamp(values, min=0)
+
     ############################################################################
     #                             END OF YOUR CODE                            #
     ############################################################################
@@ -82,7 +84,11 @@ def two_layer_forward(
     # for these two-dimensional tensors.                                      #
     ############################################################################
     # Replace "pass" statement with your code
-    pass
+
+    hidden_linear = X @ W1 + b1
+    hidden = relu(hidden_linear)
+    scores = hidden @ W2 + b2
+
     ############################################################################
     #                             END OF YOUR CODE                            #
     ############################################################################
@@ -100,7 +106,9 @@ def predict_two_layer(params: Parameters, X: torch.Tensor) -> torch.Tensor:
     # Return a tensor of shape (N,) containing class indices.                  #
     ############################################################################
     # Replace "pass" statement with your code
-    pass
+
+    predicted_classes = torch.argmax(scores, dim=1)
+
     ############################################################################
     #                             END OF YOUR CODE                            #
     ############################################################################
